@@ -1,0 +1,6 @@
+{{title}}
+<ul>
+  {{#posts}}
+    <li>{{post}} <a href="/deletePost/{{id}}">x</a></li>
+  {{/posts}}
+</ul>
