@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mySite</title>
+  </head>
+  <body>
+    <h1>Hello {{ user }}</h1>
+    <h2>{{ title }}</h2>
+    <a href="/login">login</a>
+    <a href="/signup">signup</a>
+  </body>
+</html>
