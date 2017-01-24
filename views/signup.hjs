@@ -1,0 +1,25 @@
+<form class="" action="/signup" method="post">
+  <div class="">
+    <label for="">First Name:</label>
+    <input type="text" name="first_name" placeholder="Given Name">
+  </div>
+  <div class="">
+    <label for="">Last Name:</label>
+    <input type="text" name="last_name" placeholder="Family Name">
+  </div>
+  <div class="">
+    <label for="">Email:</label>
+    <input type="text" name="username" placeholder="email address">
+  </div>
+  <div class="">
+    <label for="">Password:</label>
+    <input type="text" name="password" placeholder="password">
+  </div>
+  <div class="">
+    <label for="">Password (repeat):</label>
+    <input type="text" name="password2" placeholder="repeat password">
+  </div>
+  <div class="">
+    <input type="submit" value="Sign Up">
+  </div>
+</form>
