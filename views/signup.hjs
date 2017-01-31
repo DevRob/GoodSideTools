@@ -20,7 +20,7 @@
     <input type="password" name="password" placeholder="password">
   </div>
   <div class="">
-    <label for="">Password (repeat):</label>
+    <label for="">Repeat password:</label>
     <input type="password" name="password2" placeholder="repeat password">
   </div>
   <div class="">
