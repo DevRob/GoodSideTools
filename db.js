@@ -6,7 +6,7 @@ const db = knex({
     host: "127.0.0.1",
     user: "node",
     password: "node" ,
-    database: "goodside"
+    database: "horizon_ezliving_po"
   }
 })
 
