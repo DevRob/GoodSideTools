@@ -64,6 +64,17 @@ express()
     return pattern.test(body) ? - Number(pattern.exec(body)[0]) : 0
   }
 
+  function getSMSfromDatabase() {
+    db("system_sms_log")
+    .where("delivered", 0)
+    .then((query) => {
+      // return query
+      console.log(query);
+    })
+  }
+
+  getSMSfromDatabase()
+
   function sendSMS(destination, sender, body) {
     msgDetails.destinationAddress = destination
     msgDetails.sourceAddress = sender
@@ -82,16 +93,14 @@ express()
     var date = new Date()
 
     setInterval(function(){
-      db("system_sms_log")
-      .where("delivered", 0)
-      .then((query) => {
-        counter += 1
-        console.log("---- Database check counter: ", counter, "----");
-        for (i in query) {
-          console.log("ID: ", query[i].id, ", To:", query[i].destinationAddress, ", body: ", query[i].messageBody, ", queued time: ", query[i].timestamp)
-        }
-      })
+
     }, 3000)
   }
+
+  /* Loop trought query
+  for (i in query) {
+    console.log("ID: ", query[i].id, ", To:", query[i].destinationAddress, ", body: ", query[i].messageBody, ", queued time: ", query[i].timestamp)
+  }
+  */
 
   // listenSMS()
