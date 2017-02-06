@@ -19,6 +19,16 @@ var msgDetails = {
   messageBody: ""
 }
 
+const APImessages = {
+  0: "Success",  // @TODO: Success msg to user
+  5: "Insufficient credit", // @TODO: Top-up msg to Admin
+  10: "Invalid username or password",  // @TODO: Check Setup details msg to Admin
+  15: "Invalid destination or destination not covered", // @TODO: Check destination msg to user
+  20: "System error, please retry",  // @TODO: Retry and send System ERR msg to user after ?10 retry
+  25: "Bad request; check parameters",  // @TODO: Check parameters
+  30: "Throughput exceeded"  // @TODO: Err msg to Admin
+}
+
 express()
   .set("view engine", "hjs")
   .use(bodyParser.json())
@@ -44,8 +54,14 @@ express()
       "&DA=" + msgDetails.destinationAddress +
       "&SA=" + msgDetails.sourceAddress +
       "&M=" + msgDetails.messageBody
-      console.log(url);
+      // console.log(url)
     return url
+  }
+
+  function APIresult(body) {
+    // returns error code or 0 if no error. Example: body = "ERR -25" => 25
+    var pattern = /(-\d+)/
+    return pattern.test(body) ? - Number(pattern.exec(body)[0]) : 0
   }
 
   function sendSMS(destination, sender, body) {
@@ -54,39 +70,12 @@ express()
     msgDetails.messageBody = body
 
     request.get(buildURL(msgDetails), (err, res, body) => {
-      var APIerror = getAPIerror(body)
-      console.log(APIerror);
+      // return APIresult(body)
+      console.log(APImessages[APIresult(body)])
     })
   }
 
-  function getAPIerror(APIerror) {
-    switch (APIerror) {
-      case "ERR -5":
-        // :TODO send email notification to SMS system admin
-        return "Insufficient credit";
-      case "ERR -10":
-        // :TODO send email notification to SMS system admin
-        return "Invalid username or password";
-      case "ERR -15":
-        // :TODO send email notification to sender(company representative)
-        return "Invalid destination or destination not covered";
-      case "ERR -20":
-        // :TODO retry sending
-        return "System error, please retry";
-      case "ERR -25":
-        // :TODO check parameters
-        return "Bad request; check parameters";
-      case "ERR -30":
-        // :TODO send email notification to SMS system admin
-        return "Throughput exceeded";
-      case "OK 1398281822":
-        // db("system_sms_log")
-        // .where("id", id)
-        break;
-    }
-  }
-
-  sendSMS(00353879256846, 00353879256846, "TEXT+msg+test+from+node.js")
+  // sendSMS(2, 23, "TEXT+msg+test+from+node.js")
 
   function listenSMS() {
     var counter = 0
@@ -105,4 +94,4 @@ express()
     }, 3000)
   }
 
-  listenSMS()
+  // listenSMS()
