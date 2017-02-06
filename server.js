@@ -64,16 +64,22 @@ express()
     return pattern.test(body) ? - Number(pattern.exec(body)[0]) : 0
   }
 
-  function getSMSfromDatabase() {
+  function processQueuedSMS() {
+    var destination = "",
+        sender = "",
+        body = ""
+
     db("system_sms_log")
     .where("delivered", 0)
-    .then((query) => {
-      // return query
-      console.log(query);
+    .then((smsListQuery) => {
+      for (var smsidx in smsListQuery) {
+        destination = smsListQuery[smsidx].destinationAddress
+        sender = smsListQuery[smsidx].sourceAddress
+        body = smsListQuery[smsidx].messageBody
+        sendSMS(destination, sender, body)
+      }
     })
   }
-
-  getSMSfromDatabase()
 
   function sendSMS(destination, sender, body) {
     msgDetails.destinationAddress = destination
