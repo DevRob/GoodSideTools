@@ -29,6 +29,16 @@ const APImessages = {
   30: "Throughput exceeded"  // @TODO: Err msg to Admin
 }
 
+const APIresponseHandlers = {
+  0: "",  // @TODO: Success msg to user
+  5: "", // @TODO: Top-up msg to Admin
+  10: "",  // @TODO: Check Setup details msg to Admin
+  15: "", // @TODO: Check destination msg to user
+  20: "",  // @TODO: Retry and send System ERR msg to user after ?10 retry
+  25: "",  // @TODO: Check parameters
+  30: ""
+}
+
 express()
   .set("view engine", "hjs")
   .use(bodyParser.json())
@@ -58,7 +68,7 @@ express()
     return url
   }
 
-  function APIresult(body) {
+  function APIresultCode(body) {
     // returns error code or 0 if no error. Example: body = "ERR -25" => 25
     var pattern = /(-\d+)/
     return pattern.test(body) ? - Number(pattern.exec(body)[0]) : 0
@@ -73,40 +83,59 @@ express()
     .where("delivered", 0)
     .then((smsListQuery) => {
       for (var smsidx in smsListQuery) {
+        console.log(smsListQuery);
+        smsID =  smsListQuery[smsidx].id
         destination = smsListQuery[smsidx].destinationAddress
         sender = smsListQuery[smsidx].sourceAddress
         body = smsListQuery[smsidx].messageBody
-        sendSMS(destination, sender, body)
+
+        sendSMS(smsID, destination, sender, body)
       }
     })
   }
 
-  function sendSMS(destination, sender, body) {
+  function sendSMS(id, destination, sender, SMSbody) {
     msgDetails.destinationAddress = destination
     msgDetails.sourceAddress = sender
-    msgDetails.messageBody = body
+    msgDetails.messageBody = SMSbody
 
     request.get(buildURL(msgDetails), (err, res, body) => {
-      // return APIresult(body)
-      console.log(APImessages[APIresult(body)])
+      // handleAPIresponse(APIresult(body))
+      logAPIresponse(id, body)
     })
   }
 
-  // sendSMS(2, 23, "TEXT+msg+test+from+node.js")
+  function logAPIresponse(id, result) {
+    db('system_sms_api_response_log')
+    .insert({
+      smsID: id,
+      APIresponse: result,
+      responseCode: APIresultCode(result),
+      responseMessage: APImessages[APIresultCode(result)]
+    })
+    .then()
+  }
+
+  function handleAPIresponse(result) {
+
+  }
+
+  function SMSAPIsuccess(smsID) {
+    db("system_sms_log")
+    .where('id', '=', smsID)
+    .update({
+      delivered: 0
+    })
+    .then(() => {
+      console.log("SMS sent and logged in DB");
+    })
+  }
 
   function listenSMS() {
-    var counter = 0
-    var date = new Date()
-
     setInterval(function(){
-
+      processQueuedSMS()
     }, 3000)
   }
 
-  /* Loop trought query
-  for (i in query) {
-    console.log("ID: ", query[i].id, ", To:", query[i].destinationAddress, ", body: ", query[i].messageBody, ", queued time: ", query[i].timestamp)
-  }
-  */
-
-  // listenSMS()
+  // SMSAPIsuccess(35)
+  listenSMS()
