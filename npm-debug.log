@@ -1,0 +1,36 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\robert\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@4.0.2
+3 info using node@v6.9.1
+4 verbose run-script [ 'predev', 'dev', 'postdev' ]
+5 info lifecycle goodsidetools@0.0.0~predev: goodsidetools@0.0.0
+6 silly lifecycle goodsidetools@0.0.0~predev: no script for predev, continuing
+7 info lifecycle goodsidetools@0.0.0~dev: goodsidetools@0.0.0
+8 verbose lifecycle goodsidetools@0.0.0~dev: unsafe-perm in lifecycle true
+9 verbose lifecycle goodsidetools@0.0.0~dev: PATH: C:\Users\robert\AppData\Roaming\npm\node_modules\npm\bin\node-gyp-bin;E:\GitHub\GoodSideTools\node_modules\.bin;C:\Program Files\Python35\Scripts\;C:\Program Files\Python35\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\nodejs\npm;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 & MySQL Utilities 1.5\Doctrine extensions for PHP\;E:\Projects\Goodside\Apache_ANT/bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\Java\jre7\lib\ext;C:\Windows\Microsoft.NET\Framework\v3.5;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.7.0_79\bin;C:\Program Files\nodejs\;C:\Users\robert\AppData\Roaming\npm;C:\Program Files (x86)\Windows Live\Shared;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;C:\Users\robert\Anaconda3;C:\Users\robert\Anaconda3\Scripts;C:\Users\robert\Anaconda3\Library\bin;C:\Program Files\Python35\Scripts\;C:\Users\robert\AppData\Local\atom\bin;C:\Users\robert\AppData\Local\Microsoft\WindowsApps;C:\Users\robert\AppData\Roaming\npm;C:\Users\robert\AppData\Roaming\Dashlane\4.6.5.21982\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\robert\AppData\Roaming\Dashlane\4.6.6.23032\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;%DASHLANE_DLL_DIR%
+10 verbose lifecycle goodsidetools@0.0.0~dev: CWD: E:\GitHub\GoodSideTools
+11 silly lifecycle goodsidetools@0.0.0~dev: Args: [ '/d /s /c', 'nodemon server' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1026:11)
+12 verbose stack     at process.kill (internal/process.js:172:13)
+12 verbose stack     at process.listener (C:\Users\robert\AppData\Roaming\npm\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at emitNone (events.js:91:20)
+12 verbose stack     at process.emit (events.js:185:7)
+12 verbose stack     at processEmit (C:\Users\robert\AppData\Roaming\npm\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at processEmit (C:\Users\robert\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:199:44)
+13 verbose cwd E:\GitHub\GoodSideTools
+14 error Windows_NT 10.0.14393
+15 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\robert\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
+16 error node v6.9.1
+17 error npm  v4.0.2
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

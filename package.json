@@ -3,16 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
-    "hogan-engine": "^0.9.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "express-react-views": "^0.10.2",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
-    "hjs": "~0.0.6"
+    "node-sass-middleware": "0.9.8",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
